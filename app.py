@@ -33,7 +33,7 @@ def _bhattacharyya_coefficient(mu0, cov0, mu1, cov1) -> float:
         return 0.0
 
     d = (mu1 - mu0)
-    term1 = 0.125 * float(d.T @ inv_cov @ d)
+    term1 = 0.125 * (d.T @ inv_cov @ d).item()
     term2 = 0.5 * np.log(max(det_cov, 1e-18) / max(np.sqrt(det0 * det1), 1e-18))
     DB = term1 + term2
     BC = float(np.exp(-DB))
